@@ -1,0 +1,75 @@
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        # automatically injects dependencies in your services
+        autowire: true
+        # automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true
+        # this means you cannot fetch services directly from the container via $container->get()
+        # if you need to do this, you can override this setting on individual services
+        public: false
+
+    # Example custom templating helper
+    # AppBundle\Templating\Helper\Example:
+    #     # templating helpers need to be public as they
+    #     # are fetched from the container on demand
+    #     public: true
+    #     tags:
+    #         - { name: templating.helper, alias: fooBar }
+
+    # Example event listener for objects
+    # AppBundle\EventListener\TestListener:
+    #     tags:
+    #         - { name: kernel.event_listener, event: pimcore.dataobject.preUpdate, method: onObjectPreUpdate }
+
+    # example customer save handler config
+    appbundle.cmf.customer_save_handler.normalize_zip:
+        class: CustomerManagementFrameworkBundle\CustomerSaveHandler\NormalizeZip
+        tags: [cmf.customer_save_handler]
+
+    # example segment builder config
+    appbundle.cmf.segment_builder.state:
+        class: CustomerManagementFrameworkBundle\SegmentBuilder\StateSegmentBuilder
+        tags: [cmf.segment_builder]
+
+
+    # example newsletter provider handler (mailchimp sync) config for one Mailchimp receiver list
+    appbundle.cmf.mailchimp.birthdate-transformer:
+        class: CustomerManagementFrameworkBundle\Newsletter\ProviderHandler\Mailchimp\DataTransformer\Date
+        arguments:
+            - m/d/Y
+            - Y-m-d
+
+    appbundle.cmf.mailchimp.handler.list1:
+        class: CustomerManagementFrameworkBundle\Newsletter\ProviderHandler\Mailchimp
+        autowire: true
+        arguments:
+            # Shortcut of the handler/list for internal use
+            - list1
+
+            # List ID within Mailchimp
+            - ls938393f
+
+            # Mapping of Pimcore status field => Mailchimp status
+            - manuallySubscribed: subscribed
+              singleOptIn: subscribed
+              doubleOptIn: subscribed
+              unsubscribed: unsubscribed
+              pending: pending
+
+            # Reverse mapping of Mailchimp status => Pimcore status field
+            - subscribed: doubleOptIn
+              unsubscribed: unsubscribed
+              pending: pending
+
+            # Mapping of Pimcore data object attributes => Mailchimp merge fields
+            - firstname: FNAME
+              lastname: LNAME
+              street: STREET
+              birthDate: BIRTHDATE
+
+            # Special data transfromer for the birthDate field.
+            # This ensures that the correct data format will be used.
+            - birthDate: '@appbundle.cmf.mailchimp.birthdate-transformer'
+
+        tags: [cmf.newsletter_provider_handler]
