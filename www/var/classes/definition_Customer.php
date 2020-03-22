@@ -1,7 +1,7 @@
 <?php 
 
 /** 
-* Generated at: 2019-08-30T22:21:57+02:00
+* Generated at: 2020-03-21T23:00:36+01:00
 * Inheritance: no
 * Variants: no
 * Changed by: admin (2)
@@ -18,6 +18,7 @@ Fields Summary:
 - zip [input]
 - city [input]
 - countryCode [country]
+- geoPoint [geopoint]
 - email [email]
 - phone [input]
 - profilingConsent [consent]
@@ -34,7 +35,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'name' => 'Customer',
    'description' => '',
    'creationDate' => 0,
-   'modificationDate' => 1567196517,
+   'modificationDate' => 1584828035,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '\\CustomerManagementFrameworkBundle\\Model\\AbstractCustomer',
@@ -1701,6 +1702,39 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'noteditable' => false,
                          'index' => false,
                          'locked' => false,
+                         'style' => '',
+                         'permissions' => NULL,
+                         'datatype' => 'data',
+                         'relationType' => false,
+                         'invisible' => false,
+                         'visibleGridView' => false,
+                         'visibleSearch' => false,
+                      )),
+                      4 => 
+                      Pimcore\Model\DataObject\ClassDefinition\Data\Geopoint::__set_state(array(
+                         'fieldtype' => 'geopoint',
+                         'queryColumnType' => 
+                        array (
+                          'longitude' => 'double',
+                          'latitude' => 'double',
+                        ),
+                         'columnType' => 
+                        array (
+                          'longitude' => 'double',
+                          'latitude' => 'double',
+                        ),
+                         'phpdocType' => '\\Pimcore\\Model\\DataObject\\Data\\Geopoint',
+                         'lat' => 0.0,
+                         'lng' => 0.0,
+                         'zoom' => 1,
+                         'mapType' => 'roadmap',
+                         'name' => 'geoPoint',
+                         'title' => 'geoPoint',
+                         'tooltip' => '',
+                         'mandatory' => false,
+                         'noteditable' => false,
+                         'index' => false,
+                         'locked' => NULL,
                          'style' => '',
                          'permissions' => NULL,
                          'datatype' => 'data',
