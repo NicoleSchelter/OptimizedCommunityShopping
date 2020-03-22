@@ -89,18 +89,6 @@ pimcore_customer_management_framework:
         customerPimcoreClass: Customer
         mailBlackListFile:    /home/customerdataframework/www/var/config/cmf/mail-blacklist.txt
 
-
-    # Newsletter/MailChimp sync related settings
-    newsletter:
-        newsletterSyncEnabled: true
-
-        # Immediate execution of customer data export on customer save.
-        newsletterQueueImmediateAsyncExecutionEnabled: true
-
-        mailchimp:
-            apiKey: d1a40ajzf41d5154455a9455cc7b71b9-us14
-            cliUpdatesPimcoreUserName: mailchimp-cli
-
     # Configuration of EncryptionService
     encryption:
 

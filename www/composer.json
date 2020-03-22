@@ -9,6 +9,7 @@
   "require": {
     "php": ">=7.2",
     "hwi/oauth-bundle": "^0.6.3",
+    "nelmio/api-doc-bundle": "^3.6",
     "php-http/guzzle6-adapter": "^1",
     "php-http/httplug-bundle": "^1.16",
     "pimcore/customer-management-framework-bundle": "^2.2",

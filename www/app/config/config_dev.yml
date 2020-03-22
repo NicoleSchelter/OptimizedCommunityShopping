@@ -1,3 +1,12 @@
 imports:
     - { resource: config.yml }
-
+nelmio_api_doc:
+    documentation:
+        host: ocs.local
+        schemes: [http, https]
+        info:
+            title: OCS
+            description: App API
+            version: 1.0.0
+    areas:
+        path_patterns: [ ^/api(?!/doc.*$) ]
